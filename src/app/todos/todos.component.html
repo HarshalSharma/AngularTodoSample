@@ -1,0 +1,24 @@
+
+
+<div *ngIf="appState == 'default'">
+  <button (click)="syncToServer()" class="btn btn-success" >Sync Notes</button>
+  <h3>Add Todo</h3>
+<form (submit) = "addTodo()">
+  <input class="form-control" type ="text" [(ngModel)]="this.text" name="updateTask">
+</form>
+</div>
+
+<div *ngIf="appState == 'edit'">
+  <h3>Edit Todo</h3>
+<form (submit) = "updateTodo()">
+  <input class="form-control" type ="text" [(ngModel)]="this.text" name="inputTask">
+</form>
+</div>
+
+
+<h3>Todo list</h3>
+<ul class="list-group">
+  <li *ngFor="let item of todos; let i = index" class="list-group-item">
+     <span (click)="editTodo(item.text)"> {{item.text}} </span><button class="btn btn-danger btn-tiny text-right" (click)="deleteTodo(item.text)">x</button>
+  </li>
+</ul>
